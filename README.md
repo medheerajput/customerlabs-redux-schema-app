@@ -63,3 +63,9 @@ The project is organized into the following main components:
 3. npm install
 
 4. npm start
+
+
+PREVIEW
+![assignment](https://github.com/user-attachments/assets/eebdae1b-681e-47b6-b057-9d28443da4ba)
+
+
