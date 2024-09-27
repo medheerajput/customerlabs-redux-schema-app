@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleModal } from "./redux/schemaSlice";
+import ModalComponent from "./components/ModalComponent";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
+import "./App.css"; 
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  const { modalOpen } = useSelector((state) => state.schemas);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app">
+      <div className="middle-section">
+        <button
+          className="save-segment-btn"
+          onClick={() => dispatch(toggleModal())}
         >
-          Learn React
-        </a>
-      </header>
+          Save segment
+        </button>
+      </div>
+      <Modal
+        open={modalOpen}
+        onClose={() => dispatch(toggleModal())}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+        className="modal"
+      >
+        <Fade in={modalOpen}>
+          <ModalComponent />
+        </Fade>
+      </Modal>
     </div>
   );
-}
+};
 
 export default App;
